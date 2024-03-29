@@ -10,7 +10,7 @@ CREATE TABLE staff (
   name VARCHAR(100) NOT NULL,
   email VARCHAR(100) UNIQUE NOT NULL,
   phone VARCHAR(20),
-  expertise VARCHAR(100),
+  password VARCHAR(20),
   role VARCHAR(50) NOT NULL
 );
 
@@ -74,12 +74,13 @@ CREATE TABLE maintenance_progress (
   FOREIGN KEY (work_order_id) REFERENCES work_orders(id)
 );
 
-INSERT INTO staff (name, email, role) VALUES ('John Smith', 'john.smith@example.com', 'Electrician');
+INSERT INTO staff (name, email, password, role) VALUES ('John Smith', 'john.smith@example.com', 'john1234', 'Electrician');
 INSERT INTO buildings (name) VALUES ('Main Building');
 INSERT INTO wings (name, building_id) VALUES ('West Wing', 1);
 INSERT INTO floors (name, wing_id) VALUES ('Third Floor', 1);
 INSERT INTO rooms (number, floor_id) VALUES ('301', 1);
-INSERT INTO maintenance (description, type, sub_type, priority, room_id) VALUES ('Leaky faucet', 'Plumbing', 'Fixture', 'High', 1);
+INSERT INTO maintenance (description, type, sub_type, priority, room_id, assigned_staff_id) 
+	VALUES ('Leaky faucet', 'Plumbing', 'Fixture', 'High', 1, 1);
 INSERT INTO work_orders (maintenance_id, description) VALUES
   (1, 'Replace broken light fixture in room 205');
   

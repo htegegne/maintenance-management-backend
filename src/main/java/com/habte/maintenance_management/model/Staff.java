@@ -1,5 +1,6 @@
 package com.habte.maintenance_management.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -11,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "staff")
-public class Staff {
+public class Staff implements Serializable {
 
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +20,11 @@ public class Staff {
 
 	    private String name;
 
-	    @Column(unique = true)
+	   // @Column(unique = true)
 	    private String email;
 
 	    private String phone;
-	    private String expertise;
+	    private String password;
 	    private String role;
 		/**
 		 * @return the id
@@ -76,14 +77,14 @@ public class Staff {
 		/**
 		 * @return the expertise
 		 */
-		public String getExpertise() {
-			return expertise;
+		public String getPassword() {
+			return password;
 		}
 		/**
-		 * @param expertise the expertise to set
+		 * @param password the expertise to set
 		 */
-		public void setExpertise(String expertise) {
-			this.expertise = expertise;
+		public void setPassword(String password) {
+			this.password = password;
 		}
 		/**
 		 * @return the role
@@ -99,7 +100,7 @@ public class Staff {
 		}
 		@Override
 		public int hashCode() {
-			return Objects.hash(email, expertise, id, name, phone, role);
+			return Objects.hash(email, password, id, name, phone, role);
 		}
 		@Override
 		public boolean equals(Object obj) {
@@ -110,14 +111,14 @@ public class Staff {
 			if (getClass() != obj.getClass())
 				return false;
 			Staff other = (Staff) obj;
-			return Objects.equals(email, other.email) && Objects.equals(expertise, other.expertise)
+			return Objects.equals(email, other.email) && Objects.equals(password, other.password)
 					&& Objects.equals(id, other.id) && Objects.equals(name, other.name)
 					&& Objects.equals(phone, other.phone) && Objects.equals(role, other.role);
 		}
 		@Override
 		public String toString() {
 			return "Staff [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", expertise="
-					+ expertise + ", role=" + role + "]";
+					+ password + ", role=" + role + "]";
 		}
 	    
 	    
